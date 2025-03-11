@@ -1,0 +1,17 @@
+NAME                             READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+pod/flask-app-785cd868bd-g45j2   1/1     Running   0          13m   10.244.0.9   minikube   <none>           <none>
+pod/postgres-769d44948f-vmmh8    1/1     Running   0          23m   10.244.0.5   minikube   <none>           <none>
+
+NAME                    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE   SELECTOR
+service/flask-service   NodePort    10.107.148.8   <none>        5000:30007/TCP   23m   app=flask-app
+service/kubernetes      ClusterIP   10.96.0.1      <none>        443/TCP          32m   <none>
+service/postgres        ClusterIP   10.96.91.134   <none>        5432/TCP         23m   app=postgres
+
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                SELECTOR
+deployment.apps/flask-app   1/1     1            1           23m   flask-app    my-flask-app:latest   app=flask-app
+deployment.apps/postgres    1/1     1            1           23m   postgres     postgres:latest       app=postgres
+
+NAME                                   DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES                SELECTOR
+replicaset.apps/flask-app-5549467c5f   0         0         0       23m   flask-app    my-flask-app:latest   app=flask-app,pod-template-hash=5549467c5f
+replicaset.apps/flask-app-785cd868bd   1         1         1       13m   flask-app    my-flask-app:latest   app=flask-app,pod-template-hash=785cd868bd
+replicaset.apps/postgres-769d44948f    1         1         1       23m   postgres     postgres:latest       app=postgres,pod-template-hash=769d44948f
